@@ -18,7 +18,7 @@ router.post('/webhook', function(req, res){
 	var myInit = { method: 'GET',
 	               mode: 'cors',
 	               cache: 'default' };
-	var paramters = req.result.paramters;
+	var paramters = req.result.parameters;
 	var status = paramters.Status;
 	fetch('https://staypositivebot.herokuapp.com/api?status=' + status, myInit).then(function(response) {
 	  return response.json();
