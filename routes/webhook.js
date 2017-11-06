@@ -13,6 +13,8 @@ router.post('/webhook', function(req, res){
     };
 	res.send(JSON.stringify(sampleResponse));*/
 
+
+	var speech = '';
 	var myInit = { method: 'GET',
 	               mode: 'cors',
 	               cache: 'default' };
@@ -21,7 +23,15 @@ router.post('/webhook', function(req, res){
 	  return response.json();
 	}).then(function(myJson) {
 	  console.log("Hi inside webhook");
-	  res.send(myJson);
+	  speech = myJson.map(function(elem){
+		    return elem.Name;
+		}).join(", ");
+	  var sampleResponse = {
+        "speech": speech,
+        "displayText": speech,
+        "source": "apiai-sfbot"
+    	};
+	  res.send(sampleResponse);
 	});
 
 
